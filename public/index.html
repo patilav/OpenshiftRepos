@@ -12,6 +12,19 @@
 <body ng-app="CMApp">
     <div class="container" ng-controller="CMController">
         <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        <input class="form-control" ng-model="site.name"/>
+                    </th>
+                    <th>
+                        <button class="btn btn-success pull-right" ng-click="add(site)">
+                            <span class="glyphicon glyphicon-plus ">
+                            </span>
+                        </button>
+                    </th>
+                </tr>
+            </thead>
             <tbody>
                 <tr ng-repeat="website in websites">
                     <td>{{website.name}}</td>
