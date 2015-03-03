@@ -11,8 +11,8 @@ app.use(multer()); // for parsing multipart/form-data
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/', function (req, res) {
-    res.send('hello world');
+app.get('/content', function (req, res) {
+    res.send('<h1>Hello from Open Shift - Static Message</h1>');
 });
 
 var websites = [
