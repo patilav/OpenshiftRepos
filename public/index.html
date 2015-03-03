@@ -1,9 +1,17 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/CMApp.js"></script>
     <title>OpenShift First Index</title>
 </head>
-<body>
-    <h1>Index.html</h1>
+<body ng-app="CMApp" >
+    <div class="container" ng-controller="CMController">
+        {{hello}}
+    </div>
 </body>
 </html>
