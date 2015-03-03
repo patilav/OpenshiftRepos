@@ -20,6 +20,11 @@ app.get("/api/website/:id", function (req, resp) {
     resp.json(websites[req.params.id]);
 });
 
+app.delete("/api/website/:id", function (req, resp) {
+    websites.splice(req.params.id,1);
+    resp.json(websites);
+});
+
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 

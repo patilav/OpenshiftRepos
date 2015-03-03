@@ -9,9 +9,21 @@
     <script src="js/CMApp.js"></script>
     <title>OpenShift First Index</title>
 </head>
-<body ng-app="CMApp" >
+<body ng-app="CMApp">
     <div class="container" ng-controller="CMController">
-        {{websites}}
+        <table class="table table-striped">
+            <tbody>
+                <tr ng-repeat="website in websites">
+                    <td>{{website.name}}</td>
+                    <td>
+                        <button class="btn btn-danger pull-right" ng-click="remove($index)">
+                            <span class="glyphicon glyphicon-remove ">
+                            </span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
