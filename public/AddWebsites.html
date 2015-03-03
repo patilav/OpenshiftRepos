@@ -11,7 +11,7 @@
 </head>
 <body ng-app="CMApp">
     <div class="container" ng-controller="CMController">
-        <h1 class="h1">Website Listing - CRUD</h1>
+        <h1 class="h1">Website Listing - Add Websites</h1>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -30,10 +30,6 @@
                 <tr ng-repeat="website in websites">
                     <td>{{website.name}}</td>
                     <td>
-                        <button class="btn btn-danger pull-right" ng-click="remove($index)">
-                            <span class="glyphicon glyphicon-remove ">
-                            </span>
-                        </button>
                     </td>
                 </tr>
             </tbody>
