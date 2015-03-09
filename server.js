@@ -5,11 +5,13 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 
 var mongoose = require('mongoose');
-//mongoose.connect('mongodb://localhost/cs5610');
 
-app.get('/process', function (req, res) {
-    res.json(process.env);
-})
+var connectionString = process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost/cs5610'
+mongoose.connect(connectionString);
+
+//app.get('/process', function (req, res) {
+//    res.json(process.env);
+//})
 
 var FormSchema = new mongoose.Schema({
     name: String,
