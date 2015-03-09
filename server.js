@@ -5,11 +5,15 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/cs5610');
+//mongoose.connect('mongodb://localhost/cs5610');
+
+app.get('/process', function (req, res) {
+    res.json(process.env);
+})
 
 var FormSchema = new mongoose.Schema({
     name: String,
-    created: { type: Date, default: Date.now },
+    created: { type: Date, default: Date.now }
 }, { collection: "form" });
 var Form = mongoose.model("Form", FormSchema);
 
@@ -114,6 +118,7 @@ app.delete("/api/website/:id", function (req, resp) {
 app.delete("/api/website/:siteId/page/:pageIndex", function (req, resp) {
     websites[req.params.siteId].pages.splice(req.params.pageIndex, 1);
     resp.json(websites);
+
 });
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
