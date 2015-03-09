@@ -30,11 +30,6 @@
                 <tr ng-repeat="website in websites">
                     <td>{{website.name}}</td>
                     <td>
-                        <button class="btn btn-warning pull-right" ng-click="select($index)">
-                            <span class="glyphicon glyphicon-pencil ">
-                            </span>
-                        </button>
-
                         <button class="btn btn-danger pull-right" ng-click="remove($index)">
                             <span class="glyphicon glyphicon-remove ">
                             </span>
@@ -43,30 +38,6 @@
                 </tr>
             </tbody>
         </table>
-        <div ng-show="selectedSite.pages.length > 0">
-            <h2>Pages</h2>
-            <table class="table table-striped">
-                <tbody >
-                    <tr ng-repeat="page in selectedSite.pages">
-                        <td>
-                            {{page.name}}
-                        </td>
-                        <td>
-                            <button class="btn btn-warning pull-right" ng-click="selectPage($index)">
-                                <span class="glyphicon glyphicon-pencil ">
-                                </span>
-                            </button>
-
-                            <button class="btn btn-danger pull-right" ng-click="removePage($index)">
-                                <span class="glyphicon glyphicon-remove ">
-                                </span>
-                            </button>
-
-</tr>
-                </tbody>
-            </table>
-        </div>
-        
     </div>
 </body>
 </html>

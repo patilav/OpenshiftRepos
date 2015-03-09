@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/FormApp.js"></script>
+    <title>OpenShift First Index</title>
+</head>
+<body ng-app="FormApp">
+    <div class="container" ng-controller="FormController">
+        <h1 class="h1">FORM - CRUD</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        <input class="form-control" ng-model="form.name" />
+                    </th>
+                    <th>
+                        <button class="btn btn-success pull-right" ng-click="add(form)">
+                            <span class="glyphicon glyphicon-plus ">
+                            </span>
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="form in forms">
+                    <td>{{form.name}}</td>
+                    <td>{{form.created | date}}</td>
+                    <td>
+                        <button class="btn btn-danger pull-right" ng-click="remove(form._id)">
+                            <span class="glyphicon glyphicon-remove ">
+                            </span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/FormApp.js"></script>
+    <title>MongoDB View</title>
+</head>
+<body ng-app="FormApp">
+    <div class="container" ng-controller="FormController">
+        <h1 class="h1">MongoDB View: Table(forms) data</h1>
+        <table class="table table-striped">
+            <tbody>
+                <tr ng-repeat="form in forms">
+                    <td>{{form.name}}</td>
+                    <td>{{form.created | date}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
