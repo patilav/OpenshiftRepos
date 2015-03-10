@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/CMWApp.js"></script>
+    <title>OpenShift First Index</title>
+</head>
+<body ng-app="CMApp">
+    <div class="container" ng-controller="CMController">
+        <h1 class="h1">Website Listing - CRUD</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        <input class="form-control" ng-model="site.name" />
+                    </th>
+                    <th>
+                        <button class="btn btn-success pull-right" ng-click="add(site)">
+                            <span class="glyphicon glyphicon-plus ">
+                            </span>
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="website in websites">
+                    <td>{{website.name}}</td>
+                    <td>
+                        <button class="btn btn-warning pull-right" ng-click="select($index)">
+                            <span class="glyphicon glyphicon-pencil ">
+                            </span>
+                        </button>
+
+                        <button class="btn btn-danger pull-right" ng-click="remove(website._id)">
+                            <span class="glyphicon glyphicon-remove ">
+                            </span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div ng-show="selectedSite.pages.length > 0">
+            <h2>Pages</h2>
+            <table class="table table-striped">
+                <tbody>
+                    <tr ng-repeat="page in selectedSite.pages">
+                        <td>
+                            {{page.name}}
+                        </td>
+                        <td>
+                            <button class="btn btn-warning pull-right" ng-click="selectPage($index)">
+                                <span class="glyphicon glyphicon-pencil ">
+                                </span>
+                            </button>
+
+                            <button class="btn btn-danger pull-right" ng-click="removePage($index)">
+                                <span class="glyphicon glyphicon-remove ">
+                                </span>
+                            </button>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
