@@ -7,15 +7,21 @@
     <script src="js/angular.js"></script>
     <script src="js/angular-route.js"></script>
     <script src="js/CMWApp.js"></script>
-    <title>Mngodb and nodejs connection</title>
+    <title>Website Delete on Mongodb using Node.js</title>
 </head>
 <body ng-app="CMApp">
     <div class="container" ng-controller="CMController">
-        <h1 class="h1">Website Listing using MongoDb connection</h1>
+        <h1 class="h1">Website Delete on Mongodb using Node.js</h1>
         <table class="table table-striped">
             <tbody>
                 <tr ng-repeat="website in websites">
                     <td>{{website.name}}</td>
+                    <td>
+                       <button class="btn btn-danger pull-right" ng-click="remove(website._id)">
+                            <span class="glyphicon glyphicon-remove ">
+                            </span>
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>

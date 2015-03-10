@@ -13,9 +13,9 @@ var mongoose = require('mongoose');
 var connectionString = process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost/cs5610';
 mongoose.connect(connectionString);
 
-//app.get('/process', function (req, res) {
-//    res.json(process.env);
-//})
+app.get('/process', function (req, res) {
+    res.json(process.env);
+})
 
 var PageSchema = new mongoose.Schema({
     name: String,
