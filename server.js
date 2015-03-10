@@ -4,9 +4,13 @@ var app = express();
 var bodyParser = require('body-parser');
 var multer = require('multer');
 
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(multer()); // for parsing multipart/form-data
+
 var mongoose = require('mongoose');
 
-var connectionString = process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost/cs5610'
+var connectionString = process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost/cs5610';
 mongoose.connect(connectionString);
 
 //app.get('/process', function (req, res) {
@@ -17,6 +21,7 @@ var FormSchema = new mongoose.Schema({
     name: String,
     created: { type: Date, default: Date.now }
 }, { collection: "form" });
+
 var Form = mongoose.model("Form", FormSchema);
 
 app.get("/api/form", function (req, resp) {
@@ -41,9 +46,6 @@ app.delete("/api/form/:id", function (req, resp) {
     })
 });
 
-app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.use(multer()); // for parsing multipart/form-data
 
 
 app.use(express.static(__dirname + '/public'));

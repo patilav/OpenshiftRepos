@@ -16,7 +16,6 @@ app.controller("CMController", function ($scope, $http) {
     $scope.select = function (index) {
         $scope.selectedIndex = index
         $scope.selectedSite = $scope.websites[index];
-
     }
 
     $scope.add = function (site) {
