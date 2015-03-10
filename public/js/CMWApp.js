@@ -5,11 +5,10 @@ app.controller("CMController", function ($scope, $http) {
     $scope.selectedSite = null;
 
     $scope.removePage = function (pageIndex) {
-        $http.delete("/mongoapi/website/" + $scope.selectedIndex + "/page/" + pageIndex)
-        .success(function (response)
-        {
-            $scope.websites = response;
-            $scope.selectedSite = response[$scope.selectedIndex];
+        $scope.selectedSite.pages.splice(pageIndex, 1);
+        $http.put("/mongoapi/website/" + $scope.selectedSite._id, $scope.selectedSite)
+        .success(function (resp) {
+            $scope.websites = resp;
         })
     }
 
@@ -19,9 +18,24 @@ app.controller("CMController", function ($scope, $http) {
     }
 
     $scope.add = function (site) {
-        $http.post("/mongoapi/website",site)
+        $http.post("/mongoapi/website", site)
         .success(function (response) {
             $scope.websites = response;
+        })
+    }
+
+    $scope.addPage = function (page) {
+        if (typeof $scope.selectedSite.pages == undefined)
+        {
+            $scope.selectedSite.pages = [];
+        }
+        var newPage = {
+            name : page.name
+        }
+        $scope.selectedSite.pages.push(newPage);
+        $http.put("/mongoapi/website/" +$scope.selectedSite._id, $scope.selectedSite)
+        .success(function (resp) {
+            $scope.websites = resp;
         })
     }
 
@@ -30,7 +44,7 @@ app.controller("CMController", function ($scope, $http) {
         .success(function (response) {
             $scope.websites = response;
         })
-     }
+    }
 
     $http.get("/mongoapi/website").success(function (response) {
         $scope.websites = response;

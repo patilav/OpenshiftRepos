@@ -17,9 +17,16 @@ mongoose.connect(connectionString);
 //    res.json(process.env);
 //})
 
+var PageSchema = new mongoose.Schema({
+    name: String,
+    created: {type: Date, default: Date.now}
+});
+
 var WebSiteSchema = new mongoose.Schema({
-    name: String
+    name: String,
+    pages: [PageSchema]
 }, { collection: "website" });
+
 
 var WebsiteModel = mongoose.model("WebsiteModel", WebSiteSchema);
 
@@ -51,8 +58,6 @@ app.delete("/api/form/:id", function (req, resp) {
         })
     })
 });
-
-
 
 app.use(express.static(__dirname + '/public'));
 
@@ -147,7 +152,9 @@ app.post("/mongoapi/website", function (req, resp) {
 });
 
 app.get("/mongoapi/website/:id", function (req, resp) {
-    resp.json(websites[req.params.id]);
+    WebsiteModel.findById(req.params.id, function (err, doc) {
+        resp.json(doc);
+    })
 });
 
 app.delete("/mongoapi/website/:id", function (req, resp) {
@@ -163,8 +170,21 @@ app.delete("/mongoapi/website/:id", function (req, resp) {
 app.delete("/mongoapi/website/:siteId/page/:pageIndex", function (req, resp) {
     websites[req.params.siteId].pages.splice(req.params.pageIndex, 1);
     resp.json(websites);
-
 });
+
+app.get("/mongoapi/website/:siteId/page", function (req, resp) {
+    WebsiteModel.findById(req.params.siteId, function (err, doc) {
+        resp.json(doc.pages);
+    })
+});
+
+app.put("/mongoapi/website/:id", function (req, res) {
+    WebsiteModel.update({ _id: req.params.id }, { $set: req.body }, function (err, data) {
+        WebsiteModel.find(function (err, data) {
+            res.json(data);
+        });
+    });
+})
 
 //---------------------------------------------------------------------------------------
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
