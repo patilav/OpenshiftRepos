@@ -17,6 +17,12 @@ mongoose.connect(connectionString);
 //    res.json(process.env);
 //})
 
+var WebSiteSchema = new mongoose.Schema({
+    name: String
+}, { collection: "website" });
+
+var WebsiteModel = mongoose.model("WebsiteModel", WebSiteSchema);
+
 var FormSchema = new mongoose.Schema({
     name: String,
     created: { type: Date, default: Date.now }
@@ -109,7 +115,6 @@ app.post("/api/website", function (req, resp) {
     resp.json(websites);
 });
 
-
 app.get("/api/website/:id", function (req, resp) {
     resp.json(websites[req.params.id]);
 });
@@ -124,7 +129,44 @@ app.delete("/api/website/:siteId/page/:pageIndex", function (req, resp) {
     resp.json(websites);
 
 });
+//---------------------------------------------------------------------------------------------------
 
+app.get("/mongoapi/website", function (req, resp) {
+    WebsiteModel.find(function (err, data) {
+        resp.json(data);
+    });
+});
+
+app.post("/mongoapi/website", function (req, resp) {
+    var site1 = new WebsiteModel(req.body);
+    site1.save(function (err, doc) {
+        WebsiteModel.find(function (err, data) {
+            resp.json(data);
+        });
+    });
+});
+
+app.get("/mongoapi/website/:id", function (req, resp) {
+    resp.json(websites[req.params.id]);
+});
+
+app.delete("/mongoapi/website/:id", function (req, resp) {
+    WebsiteModel.findById(req.params.id, function (err, doc) {
+        doc.remove();
+        WebsiteModel.find(function (err, data) {
+            resp.json(data);
+        });
+
+    });
+});
+
+app.delete("/mongoapi/website/:siteId/page/:pageIndex", function (req, resp) {
+    websites[req.params.siteId].pages.splice(req.params.pageIndex, 1);
+    resp.json(websites);
+
+});
+
+//---------------------------------------------------------------------------------------
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
