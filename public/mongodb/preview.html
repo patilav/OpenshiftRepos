@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Load photo</title>
+    <link rel="stylesheet" href="../bootstrap-3.3.2-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/001-style.css" />
+    <script src="../Libraries/angular.min.js"></script>
+    <script src="../Libraries/angular-route.min.js"></script>
+    <script src="../Libraries/ui-bootstrap-tpls-0.12.1.min.js"></script>
+    <script src="../Libraries/jquery-1.11.2.js"></script>
+    <script src="js/preview.js"></script>
+</head>
+<body ng-app="MyApp">
+    <div ng-controller="NavController">
+        <img ng-src="{{loc}}" width="100" height="100" class="avatar img-circle" alt="avatar">
+        <h6>Upload photo...</h6>
+
+        <input ng-model="photo" class="form-control" id="filePicker" type="file">
+    </div>
+</body>
+</html>

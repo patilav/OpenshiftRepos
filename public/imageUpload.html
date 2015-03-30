@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/CMWApp.js"></script>
+    <title></title>
+</head>
+<body ng-app="CMApp">
+    <div class="container" ng-controller="CMController">
+        <form id="uploadForm"
+              enctype="multipart/form-data"
+              action="/api/photo"
+              method="post">
+            <input type="file" name="userPhoto" />
+            <input type="submit" value="Upload Image" name="submit">
+        </form>
+        </div>
+</body>
+</html>
